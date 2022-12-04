@@ -2397,7 +2397,7 @@ input.text {
 	font-weight: 500;
 }
 .categories_btn {
-	background-color: #FF324D;
+	background-color: blue;
 	border: 1px solid #FF324D;
 	padding: 20px 15px;
 	color: #fff;
@@ -2442,7 +2442,7 @@ input.text {
 	vertical-align: middle;
 }
 #navCatContent li a:hover {
-	color: #FF324D;
+	color: blue;
 }
 #navCatContent li a.dropdown-toggler::after {
 	position: absolute;
@@ -2484,7 +2484,7 @@ input.text {
 	padding: 12px 15px;
 	display: block;
 	font-size: 16px;
-	color: #FF324D;
+	color: blue;
 	border-top: 1px solid #ddd;
 	margin-top: 5px;
 	position: relative;
@@ -2530,7 +2530,7 @@ input.text {
 .search_btn2 {
 	position: absolute;
 	right: 5px;
-	background-color: #FF324D;
+	background-color: #0a53be;
 	border: 0;
 	border-radius: 100%;
 	font-size: 14px;
@@ -2542,7 +2542,7 @@ input.text {
 	z-index: 9;
 }
 .search_btn3 {
-	background-color: #FF324D;
+	background-color: #1e8cbe;
 	color: #fff;
 	border: 0;
 	padding: 10px 30px;

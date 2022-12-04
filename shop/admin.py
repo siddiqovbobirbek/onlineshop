@@ -18,19 +18,19 @@ class ReviewAdmin(admin.ModelAdmin):
 
 @admin.register(Brand)
 class BrandAdmin(admin.ModelAdmin):
-    list_display = ("name", "url", "description", "category", )
+    list_display = ("name", "url", "description", )
     list_display_links = ("name", "url", )
 
 
 @admin.register(ProductPhoto)
 class ProductPhotoAdmin(admin.ModelAdmin):
-    list_display = ("url", "image", "category", )
-    list_display_links = ("category", "image")
+    list_display = ("url", "image", "text", )
+    list_display_links = ("text", "image")
 
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ("url", "category", "name", "description", "brand", "price", "item",)
+    list_display = ("url", "name", "description", "brand", "price")
     list_display_links = ("name", "price")
 
 
