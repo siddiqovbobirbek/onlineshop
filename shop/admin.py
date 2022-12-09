@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Category, ProductPhoto, Review, Brand, Product, Order, OrderDetail
+from .models import Category, ProductPhoto, Review, Brand, Product, Order, OrderItem
 
 
 @admin.register(Category)
@@ -24,23 +24,23 @@ class BrandAdmin(admin.ModelAdmin):
 
 @admin.register(ProductPhoto)
 class ProductPhotoAdmin(admin.ModelAdmin):
-    list_display = ("url", "image", "text", )
-    list_display_links = ("text", "image")
+    list_display = ("title", "image", "product" )
+    list_display_links = ("image", "title")
 
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ("url", "name", "description", "brand", "price")
-    list_display_links = ("name", "price")
+    list_display = ("url", "name", "brand", "price")
+    list_display_links = ("url", "name")
 
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ("name", "url", "number", "email", "address", "datetime", "total",)
-    list_display_links = ("number", "datetime")
+    list_display = ("customer", "complete", "transaction_id")
+    list_display_links = ("complete", "transaction_id")
 
 
-@admin.register(OrderDetail)
-class OrderDetailAdmin(admin.ModelAdmin):
-    list_display = ("url", "product", "order", "name", "price",)
-    list_display_links = ("name", "product")
+@admin.register(OrderItem)
+class OrderItemAdmin(admin.ModelAdmin):
+    list_display = ("product", "order", "quantity")
+    list_display_links = ("product", "order")

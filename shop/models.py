@@ -1,4 +1,8 @@
 from django.db import models
+from users.models import CustomUser
+from PIL import Image as Img
+import io
+from django.core.files.uploadhandler import InMemoryUploadedFile
 
 
 class Category(models.Model):
@@ -28,17 +32,30 @@ class Brand(models.Model):
 
 
 class ProductPhoto(models.Model):
-    url = models.SlugField(max_length=100, unique=True)
+    title = models.CharField(max_length=100, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
-    text = models.CharField(max_length=200, unique=True)
-    category = models.ManyToManyField(Category)
+    product = models.ForeignKey('Product', on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
-        return self.text
+        return self.title
 
     class Meta:
         verbose_name = "Photos"
         verbose_name_plural = "ProductPhoto"
+
+    def save(self, **kwargs):
+        if self.image:
+            img = Img.open(io.BytesIO(self.image.read()))
+            if img.mode != 'RGB':
+                img = img.convert('RGB')
+            img.thumbnail((150, 160), Img.ANTIALIAS)  # (width,height)
+            output = io.BytesIO()
+            img.save(output, format='JPEG')
+            output.seek(0)
+            self.image = InMemoryUploadedFile(output, 'ImageField', "%s.jpg"
+                                              % self.image.name.split('.')[0], 'image/jpeg',
+                                              "Content-Type: charset=utf-8", None)
+            super(ProductPhoto, self).save()
 
 
 class Review(models.Model):
@@ -63,35 +80,45 @@ class Product(models.Model):
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(null=True, blank=True)
+    
 
     def __str__(self):
-        return str(self.price) + ": $"
+        return str(self.name)
 
     class Meta:
         ordering = ('name',)
 
 
 class Order(models.Model):
-    name = models.CharField(max_length=200)
-    url = models.SlugField(max_length=250, unique=True)
-    email = models.EmailField(unique=True)
-    address = models.CharField(max_length=200)
-    number = models.IntegerField(unique=True)
-    datetime = models.DateTimeField(auto_now_add=True)
-    total = models.PositiveSmallIntegerField("Jami summa", default=0)
+    customer = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, blank=True)
+    date_ordered = models.DateTimeField(auto_now_add=True)
+    complete = models.BooleanField(default=False)
+    transaction_id = models.CharField(max_length=100, null=True)
 
     def __str__(self):
-        return self.number
+        return str(self.id)
 
-
-class OrderDetail(models.Model):
-    url = models.SlugField(max_length=200, unique=True)
-    product = models.ForeignKey(Product, verbose_name="Product", on_delete=models.SET_NULL, blank=True, null=True)
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, blank=True, null=True)
-    name = models.CharField(max_length=200)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    
+    @property
+    def get_cart_total(self):
+        orderitems = self.orderitem_set.all()
+        total = sum([item.get_total for item in orderitems])
+        return total 
 
     @property
-    def __str__(self):
+    def get_cart_items(self):
+        orderitems = self.orderitem_set.all()
+        total = sum([item.quantity for item in orderitems])
+        return total
+
+
+class OrderItem(models.Model):
+    product = models.ForeignKey(Product, verbose_name="Product", on_delete=models.SET_NULL, blank=True, null=True)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, blank=True, null=True)
+    quantity = models.IntegerField(default=0, null=True, blank=True)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def get_total(self):
         total = self.product.price * self.quantity
         return total
