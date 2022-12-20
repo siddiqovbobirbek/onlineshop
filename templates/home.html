@@ -147,25 +147,19 @@
                     <img class="logo_dark" src="{% static 'assets/images/logo_dark.png' %}" alt="logo" />
                 </a>
                 <div class="product_search_form rounded_input">
-                    <form>
+                    <form method="get" action="/search/">
                         <div class="input-group">
-                            <div class="input-group-prepend">
+                            <div class="input-group-prepend">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
                                 <div class="custom_select">
                                     <select class="first_null">
                                         <option value="">All Category</option>
                                         {% for i in category %}
                                         <option value=" ">{{ i.name }}</option>
-<!-- {#                                        <option value="Shirt-Tops">Shirt & Tops</option>#}
-{#                                        <option value="T-Shirt">T-Shirt</option>#}
-{#                                        <option value="Pents">Pents</option>#}
-{#                                        <option value="Jeans">Jeans</option>#} -->
-
-
                                         {% endfor %}
                                     </select>
                                 </div>
                             </div>
-                            <input class="form-control" placeholder="Search Product..." required=""  type="text">
+                            <input class="form-control" name="query" placeholder="Search Product..." required=""  type="text">
                             <button type="submit" class="search_btn2"><i class="fa fa-search"></i></button>
                         </div>
                     </form>

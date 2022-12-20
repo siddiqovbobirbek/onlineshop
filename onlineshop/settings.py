@@ -79,9 +79,18 @@ WSGI_APPLICATION = 'onlineshop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'onlineshop',
+        'USER': 'bobur',
+        'PASSWORD': 'bobur+03',
+        'HOST': 'localhost',
+        'PORT': '5432'
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': 'db.sqlite3', # This is where you put the name of the db file. 
+    #              # If one doesn't exist, it will be created at migration time.
+    # }
 }
 
 

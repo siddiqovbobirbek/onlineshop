@@ -1,65 +1,68 @@
 from django.shortcuts import render
-from shop.models import Category, Brand, Product, ProductPhoto, Order, OrderItem
+from shop.models import Category, Brand, Product, Order, OrderItem
 from users.models import CustomUser
 from django.http import JsonResponse
-import json
+import json, datetime
 from .models import * 
+from .utils import cookieCart, cartData, guestOrder
 
 
 def home(request):
+
+    data = cartData(request)
+    cartItems = data['cartItems']
+    
+    products = Product.objects.all()
     category = Category.objects.all()
+    images = Product.objects.all()
     brands = Brand.objects.all()
-    images = ProductPhoto.objects.all()
-    brand_phones = Brand.objects.filter(category__name='Phones')
-    print(brand_phones)
-    context = {
-        'category': category,
-        'brands': brands,
+
+
+    context = { 
+        'cartItems':cartItems,
+        'products': products,
         'images': images,
-    }
+        'category':category,
+        'brands': brands }
     return render(request, 'home.html',context)
 
 
 def sidebar(request):
-    if request.user.is_authenticated:
-        customer = request.user
-        order, created = Order.objects.get_or_create(customer=customer, complete =False)
-        items = order.orderitem_set.all()
-        cartItems = order.get_cart_items
-    else:
-        items = []
-        order = {'get_cart_total':0, 'get_cart_items':0}
-        cartItems = order['get_cart_items']
 
+    data = cartData(request)
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+    
     products = Product.objects.all()
     images = Product.objects.all()
+    brands = Brand.objects.all()
 
 
     context = {
         'items':items, 
         'order':order, 
-        'cartItems':cartItems, 
+        'cartItems':cartItems,
         'products': products,
-        'images': images }
+        'images': images,
+        'brands': brands }
     return render(request, 'sidebar.html',context)
 
 def products(request, pk):
-    if request.user.is_authenticated:
-        customer = request.user
-        order, created = Order.objects.get_or_create(customer=customer, complete =False)
-        items = order.orderitem_set.all()
-        cartItems = order.get_cart_items
-    else:
-        items = []
-        order = {'get_cart_total':0, 'get_cart_items':0}
-        cartItems = order['get_cart_items']
+
+    data = cartData(request)
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
 
     products = Product.objects.get(id=pk)
+    xususiyatlar = products.xususiyatlar.all()
     context = {
         'items':items, 
         'order':order, 
         'cartItems':cartItems, 
         'products': products,
+        'xususiyatlar':xususiyatlar,
     }
     return render(request, 'product_detail.html',context)
      
@@ -72,10 +75,64 @@ def login(request):
     }
     return render(request, 'login.html', context)
 
+
+def cart(request):
+
+    data = cartData(request)
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+
+    context = {
+        'items':items, 
+        'order':order, 
+        'cartItems':cartItems,
+        }
+    return render(request, 'shop-cart.html',context)
+
+
+
+def checkout(request):
+
+    data = cartData(request)
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+    
+    context = {
+        'items':items, 
+        'order':order, 
+        'cartItems':cartItems,
+        }
+    return render(request, 'checkout.html',context)
+
+def contact(request):
+    category = Category.objects.all()
+    product = Product.objects.all()
+
+    context = {
+        'category': category,
+        'product': product 
+    }
+    return render(request, 'contact.html', context)
+
+
+def search(request):
+    query = request.GET['query']
+    products = Product.objects.filter(name__icontains = query).all()
+
+    context = {
+        'products':products
+    }
+
+    return render(request, 'search.html', context)
+
+
 def updateItem(request):
 	data = json.loads(request.body)
 	productId = data['productId']
 	action = data['action']
+
 	print('Action:', action)
 	print('Product:', productId)
 
@@ -98,52 +155,28 @@ def updateItem(request):
 	return JsonResponse('Item was added', safe=False)
 
 
-def cart(request):
-    if request.user.is_authenticated:
-        customer = request.user
-        order, created = Order.objects.get_or_create(customer=customer, complete =False)
-        items = order.orderitem_set.all()
-        cartItems = order.get_cart_items
-    else:
-        items = []
-        order = {'get_cart_total':0, 'get_cart_items':0}
-        cartItems = order['get_cart_items']
-
-
-    context = {
-        'items':items, 
-        'order':order, 
-        'cartItems':cartItems, 
-        }
-    return render(request, 'shop-cart.html',context)
-
-
-
-def checkout(request):
+def processOrder(request):
+    transaction_id = datetime.datetime.now().timestamp()
+    data = json.loads(request.body)
 
     if request.user.is_authenticated:
         customer = request.user
-        order, created = Order.objects.get_or_create(customer=customer, complete =False)
-        items = order.orderitem_set.all()
-        cartItems = order.get_cart_items
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        total = float(data['form']['total'])
+        order.transaction_id = transaction_id
+        
+        print(total, 'sss', order.get_cart_total)
+        
+        if int(total) == int(order.get_cart_total):
+            print(total)
+            order.complete = True
+        order.save()
+
     else:
-        items = []
-        order = {'get_cart_total':0, 'get_cart_items':0}
-        cartItems = order['get_cart_items']
+        print('User is not logged in...')
+    return JsonResponse('Payment complete!', safe=False)
 
-    context = {
-        'items':items, 
-        'order':order, 
-        'cartItems':cartItems, 
-        }
-    return render(request, 'checkout.html',context)
 
-def contact(request):
-    category = Category.objects.all()
-    product = Product.objects.all()
-
-    context = {
-        'category': category,
-        'product': product
-    }
-    return render(request, 'contact.html', context)
+def my_account(request):
+    context = {}
+    return render(request, 'my-account.html', context)

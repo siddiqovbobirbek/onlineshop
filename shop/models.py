@@ -122,3 +122,32 @@ class OrderItem(models.Model):
     def get_total(self):
         total = self.product.price * self.quantity
         return total
+
+
+class Xususiyatlari(models.Model):
+    vazni = models.CharField(max_length=100, null=True, blank=True)
+    razmeri = models.CharField(max_length=100, null=True, blank=True)
+    os_versiyasi = models.CharField(max_length=200, null=True, blank=True)
+    wi_fi_standarti = models.CharField(max_length=100, null=True, blank=True)
+    SIM_karta_turi = models.CharField(max_length=200, null=True, blank=True)
+    aloqa_standarti = models.CharField(max_length=120, null=True, blank=True)
+    kafolat_muddati = models.CharField(max_length=30, null=True, blank=True)
+    old_kamera_olchamlari = models.CharField(max_length=50, null=True, blank=True)
+    eshitish_vositasi = models.CharField(max_length=50, null=True, blank=True)
+    ornatilgan_xotira = models.CharField(max_length=50, null=True, blank=True)
+    operativ_xotira = models.CharField(max_length=50, null=True, blank=True)
+    protsessor = models.CharField(max_length=50, null=True, blank=True)
+    korpus_materiali = models.CharField(max_length=100, null=True, blank=True)
+    registratsiya = models.CharField(max_length=50, null=True, blank=True)
+    max_vedio_olchami = models.CharField(max_length=50, null=True, blank=True)
+    orqa_kamera_soni = models.CharField(max_length=50, null=True, blank=True)
+    xotira_kartasi_uyasi = models.CharField(max_length=50, null=True, blank=True)
+    simsiz_interfeyslar = models.CharField(max_length=50, null=True, blank=True)
+    batareya_quvvati = models.CharField(max_length=100, null=True, blank=True)
+    asosiy_kamera = models.CharField(max_length=50, null=True, blank=True)
+    vedio_tezligi = models.CharField(max_length=50, null=True, blank=True)
+    max_kadr_tezligi = models.CharField(max_length=50, null=True, blank=True)
+    prosessor_yadrolari_soni = models.CharField(max_length=50, null=True, blank=True)
+    fullhd_vedio_tezligi = models.CharField(max_length=60, null=True, blank=True)
+    product = models.ForeignKey('Product', on_delete=models.SET_NULL, null=True, blank=True, related_name='xususiyatlar')
+

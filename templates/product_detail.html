@@ -272,9 +272,118 @@
                 </div>
             </div>
         </div>
+        <div class="table-res--custom">
+            <h2 style="color: #FF324D;">Qurilma haqida</h2>           
+            <table class="table table-hover table-striped table-borderless">
+              <thead>
+                <tr>
+                  <th><h3>Xususiyatlari</h3></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                    <td class="text-left">Vazni</td>
+                    <td class="text-right">{{ xususiyatlar.first.vazni }}</td>
+                </tr>
+                <tr>
+                    <td>Razmeri</td>
+                    <td>{{ xususiyatlar.first.razmeri }}</td>
+                </tr>
+                <tr>
+                    <td>OS versiyasi</td>
+                    <td>{{ xususiyatlar.first.os_versiyasi }}</td>
+                </tr>
+                <tr>
+                    <td>Wi-Fi standarti</td>
+                    <td>{{ xususiyatlar.first.wi_fi_standarti }}</td>
+                </tr>
+                <tr>
+                    <td>SIM karta turi</td>
+                    <td>{{ xususiyatlar.first.SIM_karta_turi }}</td>
+                </tr>
+                <tr>
+                    <td>Aloqa standarti</td>
+                    <td>{{ xususiyatlar.first.aloqa_standarti }}</td>
+                </tr>
+                <tr>
+                    <td>Kafolat muddati</td>
+                    <td>{{ xususiyatlar.first.kafolat_muddati }}</td>
+                </tr>
+                <tr>
+                    <td>Old kamera o'lchamlari </td>
+                    <td>{{ xususiyatlar.first.old_kamera_olchamlari }}</td>
+                </tr>
+                <tr>
+                    <td>Eshitish vositasi</td>
+                    <td>{{ xususiyatlar.first.eshitish_vositasi }}</td>
+                </tr>
+                <tr>
+                    <td>O'rnatilgan xotira</td>
+                    <td>{{ xususiyatlar.first.ornatilgan_xotira }}</td>
+                </tr>
+                <tr>
+                    <td>Operativ xotira</td>
+                    <td>{{ xususiyatlar.first.operativ_xotira }}</td>
+                </tr>
+                <tr>
+                    <td>Protsessor</td>
+                    <td>{{ xususiyatlar.first.protsessor }}</td>
+                </tr>
+                <tr>
+                    <td>Korpus materiali</td>
+                    <td>{{ xususiyatlar.first.korpus_materiali }}</td>
+                </tr>
+                <tr>
+                    <td>Registratsiya</td>
+                    <td>{{ xususiyatlar.first.registratsiya }}</td>
+                </tr>
+                <tr>
+                    <td>Maximal vedio o'lchamlari</td>
+                    <td>{{ xususiyatlar.first.max_vedio_olchami }}</td>
+                </tr>
+                <tr>
+                    <td>Orqa kameralar soni</td>
+                    <td>{{ xususiyatlar.first.orqa_kamera_soni }}</td>
+                </tr>
+                <tr>
+                    <td>Xotira kartasi uyasi</td>
+                    <td>{{ xususiyatlar.first.xotira_kartasi_uyasi }}</td>
+                </tr>
+                <tr>
+                    <td>Simsiz interfeyslar</td>
+                    <td>{{ xususiyatlar.first.simsiz_interfeyslar }}</td>
+                </tr>
+                <tr>
+                    <td>Batareya quvvati</td>
+                    <td>{{ xususiyatlar.first.batareya_quvvati }}</td>
+                </tr>
+                <tr>
+                    <td>Asosiy kamera</td>
+                    <td>{{ xususiyatlar.first.asosiy_kamera }}</td>
+                </tr>
+                <tr>
+                    <td>Vedio tezligi</td>
+                    <td>{{ xususiyatlar.first.vedio_tezligi }}</td>
+                </tr>
+                <tr>
+                    <td>Maximal kadr tezligi</td>
+                    <td>{{ xususiyatlar.first.max_kadr_tezligi }}</td>
+                </tr>
+                <tr>
+                    <td>Protsessor yadrolari soni</td>
+                    <td>{{ xususiyatlar.first.prosessor_yadrolari_soni }}</td>
+                </tr>
+                <tr>
+                    <td>Full HD vedio tezligi</td>
+                    <td>{{ xususiyatlar.first.fullhd_vedio_tezligi }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         <div class="row">
         	<div class="col-12">
-            	<div class="large_divider clearfix"></div>
+            	<div class="large_divider clearfix">
+                </div>
             </div>
         </div>
         <div class="row">
@@ -282,19 +391,19 @@
             	<div class="tab-style3">
 					<ul class="nav nav-tabs" role="tablist">
 						<li class="nav-item">
-							<a class="nav-link active" id="Description-tab" data-bs-toggle="tab" href="#Description" role="tab" aria-controls="Description" aria-selected="true">Description</a>
+							<a class="nav-link active" id="Description-tab" data-bs-toggle="tab" href="#Description" role="tab" aria-controls="Description" aria-selected="true">Tavsifi</a>
                       	</li>
                       	<li class="nav-item">
-                        	<a class="nav-link" id="Additional-info-tab" data-bs-toggle="tab" href="#Additional-info" role="tab" aria-controls="Additional-info" aria-selected="false">Additional info</a>
+                        	<a class="nav-link" id="Additional-info-tab" data-bs-toggle="tab" href="#Additional-info" role="tab" aria-controls="Additional-info" aria-selected="false">Qo'shimcha ma'lumot</a>
                       	</li>
                       	<li class="nav-item">
-                        	<a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews" role="tab" aria-controls="Reviews" aria-selected="false">Reviews (2)</a>
+                        	<a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews" role="tab" aria-controls="Reviews" aria-selected="false">Sharhlar (2)</a>
                       	</li>
                     </ul>
                 	<div class="tab-content shop_info_tab">
                       	<div class="tab-pane fade show active" id="Description" role="tabpanel" aria-labelledby="Description-tab">
-                        	<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Vivamus bibendum magna Lorem ipsum dolor sit amet, consectetur adipiscing elit.Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-                        	<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
+                        	<p>Ommabop e'tiqoddan farqli o'laroq, Lorem Ipsum shunchaki tasodifiy matn emas. Uning ildizlari miloddan avvalgi 45-yillardagi klassik lotin adabiyotidan kelib chiqqan bo'lib, uning yoshi 2000 yildan oshadi. Vivamus bibendum magna Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ommabop e'tiqoddan farqli o'laroq, Lorem Ipsum shunchaki tasodifiy matn emas. Uning ildizlari miloddan avvalgi 45-yillardagi klassik lotin adabiyotidan kelib chiqqan bo'lib, uning yoshi 2000 yildan oshadi.</p>
+                        	<p>O'z vaqtida eos et acusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias bundan mustasno bo'lmagan taqdirda, o'xshatib, mehnat va xizmat ishlarini bajarishda aybdor bo'ladi. Bu oson va tez farq qiladi.</p>
                       	</div>
                       	<div class="tab-pane fade" id="Additional-info" role="tabpanel" aria-labelledby="Additional-info-tab">
                         	<table class="table table-bordered">
@@ -609,107 +718,6 @@
 
 </div>
 <!-- END MAIN CONTENT -->
-
-<!-- START FOOTER -->
-<footer class="footer_dark">
-	<div class="footer_top">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                	<div class="widget">
-                        <div class="footer_logo">
-                            <a href="#"><img src="{% static 'assets/images/logo_light.png' %}" alt="logo"/></a>
-                        </div>
-                        <p>If you are going to use of Lorem Ipsum need to be sure there isn't hidden of text</p>
-                    </div>
-                    <div class="widget">
-                        <ul class="social_icons social_white">
-                            <li><a href="#"><i class="ion-social-facebook"></i></a></li>
-                            <li><a href="#"><i class="ion-social-twitter"></i></a></li>
-                            <li><a href="#"><i class="ion-social-googleplus"></i></a></li>
-                            <li><a href="#"><i class="ion-social-youtube-outline"></i></a></li>
-                            <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
-                        </ul>
-                    </div>
-        		</div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                	<div class="widget">
-                        <h6 class="widget_title">Useful Links</h6>
-                        <ul class="widget_links">
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Location</a></li>
-                            <li><a href="#">Affiliates</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                	<div class="widget">
-                        <h6 class="widget_title">Category</h6>
-                        <ul class="widget_links">
-                            <li><a href="#">Men</a></li>
-                            <li><a href="#">Woman</a></li>
-                            <li><a href="#">Kids</a></li>
-                            <li><a href="#">Best Saller</a></li>
-                            <li><a href="#">New Arrivals</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6 col-sm-6">
-                	<div class="widget">
-                        <h6 class="widget_title">My Account</h6>
-                        <ul class="widget_links">
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="#">Discount</a></li>
-                            <li><a href="#">Returns</a></li>
-                            <li><a href="#">Orders History</a></li>
-                            <li><a href="#">Order Tracking</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                	<div class="widget">
-                        <h6 class="widget_title">Contact Info</h6>
-                        <ul class="contact_info contact_info_light">
-                            <li>
-                                <i class="ti-location-pin"></i>
-                                <p>123 Street, Old Trafford, New South London , UK</p>
-                            </li>
-                            <li>
-                                <i class="ti-email"></i>
-                                <a href="mailto:info@sitename.com">info@sitename.com</a>
-                            </li>
-                            <li>
-                                <i class="ti-mobile"></i>
-                                <p>+ 457 789 789 65</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="bottom_footer border-top-tran">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <p class="mb-md-0 text-center text-md-start">© 2020 All Rights Reserved by Bestwebcreator</p>
-                </div>
-                <div class="col-md-6">
-                    <ul class="footer_payment text-center text-lg-end">
-                        <li><a href="#"><img src="{% static 'assets/images/visa.png' %}" alt="visa"></a></li>
-                        <li><a href="#"><img src="{% static 'assets/images/discover.png' %}" alt="discover"></a></li>
-                        <li><a href="#"><img src="{% static 'assets/images/master_card.png' %}" alt="master_card"></a></li>
-                        <li><a href="#"><img src="{% static 'assets/images/paypal.png' %}" alt="paypal"></a></li>
-                        <li><a href="#"><img src="{% static 'assets/images/amarican_express.png' %}" alt="amarican_express"></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-<!-- END FOOTER -->
 
 <a href="#" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a> 
 

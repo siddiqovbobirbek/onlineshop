@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Category, ProductPhoto, Review, Brand, Product, Order, OrderItem
+from .models import Category, ProductPhoto, Review, Brand, Product, Order, OrderItem, Xususiyatlari
 
 
 @admin.register(Category)
@@ -44,3 +44,9 @@ class OrderAdmin(admin.ModelAdmin):
 class OrderItemAdmin(admin.ModelAdmin):
     list_display = ("product", "order", "quantity")
     list_display_links = ("product", "order")
+
+
+@admin.register(Xususiyatlari)
+class XususiyatlariAdmin(admin.ModelAdmin):
+    list_display = ("vazni", "razmeri", "os_versiyasi", "protsessor", "product")
+    list_display_links = ("vazni", "razmeri", "protsessor", "product")
